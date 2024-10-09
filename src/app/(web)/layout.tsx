@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { inter } from "@/data/fonts";
 
 export const metadata: Metadata = {
   title: "QuickPost",
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         {children}
       </body>
     </html>
