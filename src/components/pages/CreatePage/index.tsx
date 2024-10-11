@@ -13,16 +13,16 @@ export default function index() {
     const id = generatePostId()
     console.log(id)
 
-    const data = {
-      createdAt: new Date(),
-    };
+    // const data = {
+    //   createdAt: new Date(),
+    // };
 
-    try{
-      await setDocument('posts', id, data);
-      console.log('Document set');
-    } catch (error) {
-      console.error('Error setting document: ', error);
-    }
+    // try{
+    //   await setDocument('posts', id, data);
+    //   console.log('Document set');
+    // } catch (error) {
+    //   console.error('Error setting document: ', error);
+    // }
 
     router.push(`/create/postform/${id}`)
   }
