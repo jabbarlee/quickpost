@@ -4,7 +4,7 @@ import RecipientsFormTemplate from './RecipientsFormTemplate'
 export default function index( { id }: { id: string } ) {
   return (
     <div>
-        <p>Add your email recipients</p>
+        <h1>Add your email recipients</h1>
         <RecipientsFormTemplate id={id}/>
     </div>
   )
