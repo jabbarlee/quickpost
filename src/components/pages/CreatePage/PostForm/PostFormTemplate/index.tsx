@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button'
 
 export default function index() {
   return (
-    <div>
+    <div className={styles.container}>
         <Input placeholder='Subject'/>
         <Input placeholder='Body'/>
         <Button 
