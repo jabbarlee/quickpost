@@ -4,16 +4,27 @@ import React, { useState } from 'react'
 import Button from '@/components/ui/Button'
 import { generatePostId } from '@/actions/generatePostId'
 import { useRouter } from 'next/navigation'
+import { setDocument } from '@/data/lib/firestore'
 
 export default function index() {
-
   const router = useRouter()
 
-  const onClick = () => {
+  const onClick = async () => {
     const id = generatePostId()
     console.log(id)
 
-    router.push(`/create/postform`)
+    const data = {
+      createdAt: new Date(),
+    };
+
+    try{
+      await setDocument('posts', id, data);
+      console.log('Document set');
+    } catch (error) {
+      console.error('Error setting document: ', error);
+    }
+
+    router.push(`/create/postform/${id}`)
   }
 
   return (
