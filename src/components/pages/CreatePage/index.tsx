@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import Button from '@/components/ui/Button'
 import { generatePostId } from '@/actions/generatePostId'
 import { useRouter } from 'next/navigation'
-import { setDocument } from '@/data/lib/firestore'
 
 export default function index() {
   const router = useRouter()
@@ -12,19 +11,30 @@ export default function index() {
   const onClick = async () => {
     const id = generatePostId()
     console.log(id)
+    
+    try {
+      const response = await fetch('/api/firebase/create-document', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, data: { createdAt: new Date() } }),
+      });
 
-    // const data = {
-    //   createdAt: new Date(),
-    // };
+      if (!response.ok) {
+        throw new Error('Error creating post');
+      }
 
-    // try{
-    //   await setDocument('posts', id, data);
-    //   console.log('Document set');
-    // } catch (error) {
-    //   console.error('Error setting document: ', error);
-    // }
+      const result = await response.json();
 
-    router.push(`/create/postform/${id}`)
+      //redirect if success
+      console.log('Success:', result);
+      router.push(`/create/postform/${id}`)
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
   }
 
   return (
