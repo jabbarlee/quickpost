@@ -17,10 +17,9 @@ export default function PostFormTemplate({ id }: PostFormTemplateProps) {
   const [body, setBody] = useState('');
 
   const handleSubmit = async () => {
-    console.log('id:', id, 'subject:', subject, 'body:', body);
 
     try {
-      const response = await fetch('/api/firebase/update-document', {
+      const response = await fetch('/api/firebase/update/email-template', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

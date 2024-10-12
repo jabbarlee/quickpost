@@ -1,0 +1,7 @@
+.container{
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid #bcbcbc;
+    border-radius: 25px;
+    box-sizing: border-box;
+}
