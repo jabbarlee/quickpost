@@ -26,8 +26,8 @@ export default function index({ id }: { id: string }) {
         <RecipientsForm 
           recipients={recipients} 
           setRecipients={setRecipients} 
-          recipient={postTemplate} 
-          setRecipient={setSubject}
+          recipient={recipient} 
+          setRecipient={setRecipient}
           className={styles.form2}
         />
         <Button 

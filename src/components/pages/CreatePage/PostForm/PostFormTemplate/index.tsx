@@ -24,6 +24,7 @@ export default function PostFormTemplate({ subject, body, setSubject, setBody }:
         placeholder='Body' 
         value={body}
         onChange={(e) => setBody(e.target.value)}
+        textarea={true}
       />
     </div>
   );

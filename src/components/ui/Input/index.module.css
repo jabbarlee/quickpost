@@ -1,8 +1,10 @@
 .input{
     width: 100%;
     font-size: 15px;
+    max-height: 400px;
     padding: 7px;
     border: 1px solid #bcbcbc;
     border-radius: 5px;
     box-sizing: border-box;
+    resize: vertical;
 }
