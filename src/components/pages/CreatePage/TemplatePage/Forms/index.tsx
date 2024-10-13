@@ -13,6 +13,8 @@ export default function index({
 }: { 
   id: string 
 }) {
+  const router = useRouter()
+
   const [recipients, setRecipients] = useState<string[]>([])
   const [recipient, setRecipient] = useState<string>('')
   const [body, setBody] = useState<string>('')
@@ -45,7 +47,8 @@ export default function index({
               setRecipients,
               setRecipient,
               setBody,
-              setSubject
+              setSubject,
+              router
             })
           }}
         >

@@ -1,3 +1,4 @@
+
 export default async function submitFormToFirebase({
     id,
     subject,
@@ -6,7 +7,8 @@ export default async function submitFormToFirebase({
     setRecipients,
     setRecipient,
     setBody,
-    setSubject
+    setSubject,
+    router
 }: {
     id: string
     subject: string
@@ -16,6 +18,7 @@ export default async function submitFormToFirebase({
     setRecipient: React.Dispatch<React.SetStateAction<string>>
     setBody: React.Dispatch<React.SetStateAction<string>>
     setSubject: React.Dispatch<React.SetStateAction<string>>
+    router: any
 }) {
     try {
         //firebase
@@ -40,6 +43,7 @@ export default async function submitFormToFirebase({
         setBody('');
         setSubject('');
 
+        router.push(`/create/final/${id}`)
     } catch (error) {
         console.error('Error:', error);
     }
