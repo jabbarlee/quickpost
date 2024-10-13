@@ -29,7 +29,7 @@ export default function index() {
 
       //redirect if success
       console.log('Success:', result);
-      router.push(`/create/postform/${id}`)
+      router.push(`/create/template/${id}`)
 
     } catch (error) {
       console.error('Error:', error);

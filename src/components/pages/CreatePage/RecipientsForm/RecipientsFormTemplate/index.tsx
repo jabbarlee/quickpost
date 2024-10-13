@@ -1,49 +1,44 @@
-"use client"
-
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './index.module.css'
 import Input from '@/components/ui/Input'
-import Button from '@/components/ui/Button'
 import RecipientsList from '../RecipientsList'
-import { useRouter } from 'next/navigation'
 
-export default function index({ id }: { id: string } ) {
-    const router = useRouter();
+export default function index({ 
+    recipient, 
+    setRecipient, 
+    recipients, 
+    setRecipients,
+} : {
+    recipient: string,
+    setRecipient: React.Dispatch<React.SetStateAction<string>>,
+    recipients: string[],
+    setRecipients: React.Dispatch<React.SetStateAction<string[]>>
+}) {
+    // const handleSubmit = async () => {
+    //     try {
+    //         //firebase
+    //         const response = await fetch('/api/firebase/update/recipient', {
+    //             method: 'POST',
+    //             headers: {
+    //             'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ id, recipients }),
+    //         });
 
-    const [recipients, setRecipients] = useState<string[]>([]);
-    const [recipient, setRecipient] = useState('');
+    //         if (!response.ok) {
+    //             throw new Error('Error creating post');
+    //         }
 
-    const handleClick = async ( recipient: string) => {
-        //client side
-        setRecipients([...recipients, recipient])
-        setRecipient('')
-    }
+    //         const result = await response.json();
 
-    const handleSubmit = async () => {
-        try {
-            //firebase
-            const response = await fetch('/api/firebase/update/recipient', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id, recipients }),
-            });
+    //         //redirect if success
+    //         console.log('Success:', result);
+    //         router.push(`/create/final/${id}`)
 
-            if (!response.ok) {
-                throw new Error('Error creating post');
-            }
-
-            const result = await response.json();
-
-            //redirect if success
-            console.log('Success:', result);
-            router.push(`/create/final/${id}`)
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // }
 
   return (
     <div>
@@ -53,22 +48,6 @@ export default function index({ id }: { id: string } ) {
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
             />
-            <div className={styles.buttonContainer}>
-                <Button 
-                    buttonType='primary' 
-                    onClick={() => handleClick(recipient)}
-                >
-                    Add
-                </Button>
-                {recipients.length > 0 && (
-                    <Button 
-                        buttonType='secondary'
-                        onClick={handleSubmit}
-                    >
-                        Save & Continue
-                    </Button>
-                )}
-            </div>
         </div><br/>
         <RecipientsList recipientsList={recipients} />
     </div>

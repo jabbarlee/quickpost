@@ -1,11 +1,22 @@
 import React from 'react'
 import RecipientsFormTemplate from './RecipientsFormTemplate'
 
-export default function index( { id }: { id: string } ) {
+export default function index({ 
+  recipient, 
+  setRecipient, 
+  recipients, 
+  setRecipients,
+  className
+} : {
+  recipient: string,
+  setRecipient: React.Dispatch<React.SetStateAction<string>>,
+  recipients: string[],
+  setRecipients: React.Dispatch<React.SetStateAction<string[]>>,
+  className: string
+}) {
   return (
-    <div>
-        <h1>Add your email recipients</h1>
-        <RecipientsFormTemplate id={id}/>
+    <div className={className}>
+      <RecipientsFormTemplate recipients={recipients} setRecipients={setRecipients} recipient={recipient} setRecipient={setRecipient} />
     </div>
   )
 }

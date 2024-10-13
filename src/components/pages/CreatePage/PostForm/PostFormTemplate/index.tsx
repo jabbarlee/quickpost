@@ -1,48 +1,18 @@
+// /src/components/pages/CreatePage/PostForm/PostFormTemplate/index.tsx
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.module.css';
 import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
-import { useRouter } from 'next/navigation';
 
 interface PostFormTemplateProps {
-  id: string;
+  subject: string;
+  body: string;
+  setSubject: React.Dispatch<React.SetStateAction<string>>;
+  setBody: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function PostFormTemplate({ id }: PostFormTemplateProps) {
-  const router = useRouter();
-
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
-
-  const handleSubmit = async () => {
-
-    try {
-      const response = await fetch('/api/firebase/update/email-template', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id, subject, body }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error creating post');
-      }
-
-      const result = await response.json();
-
-      //redirect if success
-      console.log('Success:', result);
-
-    } catch (error) {
-      console.error('Error:', error);
-    }
-
-    router.push(`/create/recipients/${id}`)
-  };
-
+export default function PostFormTemplate({ subject, body, setSubject, setBody }: PostFormTemplateProps) {
   return (
     <div className={styles.container}>
       <Input 
@@ -55,12 +25,6 @@ export default function PostFormTemplate({ id }: PostFormTemplateProps) {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
-      <Button 
-        buttonType='primary' 
-        onClick={handleSubmit}
-      >
-        Create
-      </Button>
     </div>
   );
 }
