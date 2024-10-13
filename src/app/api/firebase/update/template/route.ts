@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server';
 import { db as firestore } from '@/config/firebase';
 import { doc, setDoc } from 'firebase/firestore';
@@ -6,7 +5,7 @@ import { doc, setDoc } from 'firebase/firestore';
 export async function POST(req: Request) {  
   try {
     const data = await req.json();
-    const { id, subject, body } = data;
+    const { id, subject, body, recipients } = data;
 
     if (!id) {
       return NextResponse.json({ error: 'Document ID is required' }, { status: 400 });
@@ -17,6 +16,7 @@ export async function POST(req: Request) {
     await setDoc(docRef, {
       subject,
       body,
+      recipients,
       updatedAt: new Date(), 
     }, { merge: true }); 
 
@@ -26,3 +26,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: 'Error updating document' }, { status: 500 });
   }
 }
+ 

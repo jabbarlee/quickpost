@@ -1,5 +1,6 @@
 import React from 'react'
 import Recipient from '@/components/ui/Recipient'
+import styles from './index.module.css'
 
 export default function index({
     recipientsList,
@@ -7,10 +8,10 @@ export default function index({
     recipientsList: string[]
 }) {
   return (
-    <div>
-        {recipientsList.map((recipient) => (
+    <div className={styles.container}>
+        {recipientsList.map((recipient, index) => (
             <Recipient
-                key={recipient}
+                key={index}
             >
                 {recipient}
             </Recipient>

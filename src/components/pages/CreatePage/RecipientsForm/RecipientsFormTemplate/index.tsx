@@ -15,31 +15,6 @@ export default function index({
     recipients: string[],
     setRecipients: React.Dispatch<React.SetStateAction<string[]>>
 }) {
-    // const handleSubmit = async () => {
-    //     try {
-    //         //firebase
-    //         const response = await fetch('/api/firebase/update/recipient', {
-    //             method: 'POST',
-    //             headers: {
-    //             'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ id, recipients }),
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Error creating post');
-    //         }
-
-    //         const result = await response.json();
-
-    //         //redirect if success
-    //         console.log('Success:', result);
-    //         router.push(`/create/final/${id}`)
-
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // }
 
   return (
     <div>
