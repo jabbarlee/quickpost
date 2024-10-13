@@ -20,10 +20,28 @@ export default function index({ id } : { id: string }) {
 
   return (
     <div className={styles.container}>
-        <h4>Subject: {subject}</h4>
-        <h4>Body: {body}</h4>
-        <h4>Recipients: {recipients.map((recipient, index) => <span key={index}>{recipient}, </span>)}</h4>
-        <h6>id: {id}</h6>
+        <div className={styles.section}>
+            <h4 className={styles.heading}>Subject</h4>
+            <p className={styles.content}>{subject}</p>
+        </div>
+
+        <div className={styles.section}>
+            <h4 className={styles.heading}>Body</h4>
+            <p className={styles.content}>{body}</p>
+        </div>
+
+        <div className={styles.section}>
+            <h4 className={styles.heading}>Recipients</h4>
+            <p className={styles.content}>
+                {recipients.map((recipient, index) => (
+                    <span key={index} className={styles.recipient}>{recipient}{index < recipients.length - 1 ? ', ' : ''}</span>
+                ))}
+            </p>
+        </div>
+
+        <div className={styles.section}>
+            <p className={styles.id}><strong>ID:</strong> {id}</p>
+        </div>
     </div>
   )
 }
