@@ -6,42 +6,17 @@ import RecipientsForm from '@/components/pages/CreatePage/RecipientsForm'
 import Button from '@/components/ui/Button'
 import styles from './index.module.css'
 import { useRouter } from 'next/navigation'
+import submitFormToFirebase from '@/actions/submitFormToFirebase'
 
 export default function index({ 
   id,
 }: { 
   id: string 
 }) {
-  const router = useRouter()
   const [recipients, setRecipients] = useState<string[]>([])
   const [recipient, setRecipient] = useState<string>('')
   const [body, setBody] = useState<string>('')
   const [subject, setSubject] = useState<string>('')
-
-  const handleSubmit = async () => {
-        try {
-            //firebase
-            const response = await fetch('/api/firebase/update/template', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id, subject, body, recipients }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Error creating post');
-            }
-
-            const result = await response.json();
-
-            //redirect if success
-            console.log('Success:', result);
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
 
   return (
     <div className={styles.container}>
@@ -61,7 +36,18 @@ export default function index({
         />
         <Button 
           buttonType="primary"
-          onClick={handleSubmit}
+          onClick={() => {
+            submitFormToFirebase({ 
+              id, 
+              recipients, 
+              body, 
+              subject,
+              setRecipients,
+              setRecipient,
+              setBody,
+              setSubject
+            })
+          }}
         >
           Submit
         </Button>
